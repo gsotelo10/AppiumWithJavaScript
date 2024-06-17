@@ -23,7 +23,7 @@ exports.config = {
     // of the config file unless it's absolute.
     //
     specs: [
-        './test/specs/**/*.js'
+        './test/**/*.js'
     ],
     // Patterns to exclude.
     exclude: [
@@ -122,6 +122,13 @@ exports.config = {
     //
     // Make sure you have the wdio adapter package for the specific framework installed
     // before running any tests.
+    before: function (capabilities, specs) {
+        // Registrar Babel para la compilación en tiempo de ejecución
+        require('@babel/register')({
+            // Especificar la ruta del archivo babel.config.js
+            configFile: './babel.config.js'
+        });
+    },
     framework: 'mocha',
     
     //
@@ -196,7 +203,7 @@ exports.config = {
      * variables like `browser`. It is the perfect place to define custom commands.
      * @param {Array.<Object>} capabilities list of capabilities details
      * @param {Array.<String>} specs        List of spec file paths that are to be run
-     * @param {object}         browser      instance of created browser/device session
+     *
      */
     // before: function (capabilities, specs) {
     // },
@@ -214,10 +221,6 @@ exports.config = {
     // beforeSuite: function (suite) {
     // },
     /**
-     * Function to be executed before a test (in Mocha/Jasmine) starts.
-     */
-    // beforeTest: function (test, context) {
-    // },
     /**
      * Hook that gets executed _before_ a hook within the suite starts (e.g. runs before calling
      * beforeEach in Mocha)

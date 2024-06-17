@@ -16,10 +16,10 @@ class LoginPage extends Page {
     get btnSubmit() {
         return $('[content-desc="Login button"]');
     }
-    
+
     async login() {
         
-        await this.inputUsername.setValue(process.env.USERNAME);
+        await this.inputUsername.sendtex(process.env.USERNAME);
         await this.inputPassword.setValue(process.env.PASSWORD);
         await this.btnSubmit.click();
     }
